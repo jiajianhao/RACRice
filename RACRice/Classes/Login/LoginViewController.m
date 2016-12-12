@@ -164,58 +164,89 @@
 //}
 
 -(void)doLogIn{
-    {
         
-        //    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
-        //    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
-        //    [SVProgressHUD show];
-        NSString *uuid = [UUID getUUID];
-        NSMutableString *IDStr = [NSMutableString stringWithFormat:@"%@", _phoneTextfield.text];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"q"] = @"基础";
+    
+    
+    [AFNHelper get:@"https://api.douban.com/v2/book/search" parameter:parameters success:^(id responseObject) {            [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:LOGIN_STATE];
+                                UIAlertController *alert    = [UIAlertController alertControllerWithTitle:@"登录成功" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+                                UIAlertAction *okAction     = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                                    // 点击确定按钮时 要进行的操作可以写到这里
+            //                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                    [self dismissViewControllerAnimated:YES completion:nil];
+            
+                                }];
+            
+                                 [alert addAction:okAction];
+                                [self presentViewController:alert animated:YES completion:^{
+            
+                                }];
+
+        }faliure:^(id error){
+            UIAlertController *alert    = [UIAlertController alertControllerWithTitle:@"登录失败" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *okAction     = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                // 点击确定按钮时 要进行的操作可以写到这里
+                //                        [alert dismissViewControllerAnimated:YES completion:nil];
+                
+            }];
+            
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:^{
+                
+            }];
+ 
+        }];
         
-        NSString *userStr = [IDStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+//        NSString *uuid = [UUID getUUID];
+//        NSMutableString *IDStr = [NSMutableString stringWithFormat:@"%@", _phoneTextfield.text];
         
-        NSDictionary *parameters = [[NSDictionary alloc]init];
+//        NSString *userStr = [IDStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+//        NSDictionary *parameters = [[NSDictionary alloc]init];
         //        if (_logInView.testedView.hidden == NO) {
         //            parameters = @{@"phone_num": userStr,
         //                           @"password" : _pwdTextfield.text,
         //                           @"UUID" : uuid,
         //                           @"validate_code" : _logInView.testedField.text};
         //        }else{
-        parameters = @{@"phone_num": userStr,
-                       @"password" : _pwdTextfield.text,
-                       @"UUID" : uuid,
-                       @"validate_code" : @(-1)};
+//        parameters = @{@"phone_num": userStr,
+//                       @"password" : _pwdTextfield.text,
+//                       @"UUID" : uuid,
+//                       @"validate_code" : @(-1)};
+        
         //
         //
         //        }
         
         //        ARLog(@"%@",[parameters serializeParams:parameters]);
-        
-        [AFNHelper post:USER_LOGIN parameters:[parameters serializeParams:parameters] success:^(id json){
-            NSLog(@"%@",json);
-            NSLog(@"%@",[json class]);
-            if ([json isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *dic1 =[[NSDictionary alloc]initWithDictionary:json copyItems:YES];
-                NSString *codeStr = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"code"]];
-                
-                if ([codeStr isEqualToString:@"200"]) {
-                    [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:LOGIN_STATE];
-                    UIAlertController *alert    = [UIAlertController alertControllerWithTitle:@"登录成功" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
-                    UIAlertAction *okAction     = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-                        // 点击确定按钮时 要进行的操作可以写到这里
-//                        [alert dismissViewControllerAnimated:YES completion:nil];
-                        [self dismissViewControllerAnimated:YES completion:nil];
-
-                    }];
-                    
-                     [alert addAction:okAction];
-                    [self presentViewController:alert animated:YES completion:^{
-
-                    }];
- 
-
-                }
-            }
+//        
+//        [AFNHelper post:ReadBooks parameters:parameters success:^(id json){
+//            NSLog(@"%@",json);
+//            NSLog(@"%@",[json class]);
+//            if ([json isKindOfClass:[NSDictionary class]]) {
+//                NSDictionary *dic1 =[[NSDictionary alloc]initWithDictionary:json copyItems:YES];
+//                NSString *codeStr = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"code"]];
+//                
+//                if ([codeStr isEqualToString:@"200"]) {
+//                    [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:LOGIN_STATE];
+//                    UIAlertController *alert    = [UIAlertController alertControllerWithTitle:@"登录成功" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+//                    UIAlertAction *okAction     = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+//                        // 点击确定按钮时 要进行的操作可以写到这里
+////                        [alert dismissViewControllerAnimated:YES completion:nil];
+//                        [self dismissViewControllerAnimated:YES completion:nil];
+//
+//                    }];
+//                    
+//                     [alert addAction:okAction];
+//                    [self presentViewController:alert animated:YES completion:^{
+//
+//                    }];
+// 
+//
+//                }
+//            }
 //            NSDictionary *dic1 = [NSJSONSerialization JSONObjectWithData:json options:NSJSONReadingMutableContainers error:nil];
 //            
 //            NSString *codeStr = [NSString stringWithFormat:@"%@",[dic1 objectForKey:@"code"]];
@@ -223,14 +254,11 @@
 //            if ([codeStr isEqualToString:@"200"]) {
 //                [self dismissViewControllerAnimated:YES completion:nil];
 //            }
-            
-        }faliure:^(id error){
-            NSLog(@"%@",error);
-            
-        }];
-        
-        
-    }
+ //        }faliure:^(id error){
+//            NSLog(@"%@",error);
+//            
+//        }];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

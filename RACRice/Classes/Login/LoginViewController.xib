@@ -55,14 +55,15 @@
                         <constraint firstItem="jnB-mH-Z1g" firstAttribute="top" secondItem="19n-43-5K0" secondAttribute="top" constant="31" id="ock-Lh-Npf"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="fOJ-My-xhT">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fOJ-My-xhT">
                     <rect key="frame" x="133" y="85" width="110" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="fOJ-My-xhT" secondAttribute="height" multiplier="11:6" id="WDN-kD-nlt"/>
                         <constraint firstAttribute="height" constant="60" id="jWk-2s-6jn"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="铸就万家财富" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJJ-Ug-RLd">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="铸就万家财富" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJJ-Ug-RLd">
                     <rect key="frame" x="0.0" y="155" width="375" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="156-Hk-JLz"/>
@@ -136,7 +137,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo" width="110" height="60"/>
         <image name="密码图标" width="19" height="19"/>
         <image name="睁眼图标" width="19" height="19"/>
         <image name="账号图标" width="19" height="19"/>
