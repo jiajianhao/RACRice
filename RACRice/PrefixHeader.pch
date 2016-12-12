@@ -1,0 +1,59 @@
+//
+//  PrefixHeader.pch
+//  RACRice
+//
+//  Created by admin on 2016/12/9.
+//  Copyright © 2016年 admin. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+//-------------------常用类-------------------------
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "MJExtension.h"
+#import "ReactiveCocoa.h"
+#import "CEReactiveView.h"
+#import "CETableViewBindingHelper.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "RequestViewModel.h"
+#import "UUID.h"
+#import "AFNHelper.h"
+#import "NSDictionary+SerializeParams.h"
+#import "port.h"
+#import "AppDelegate.h"
+//#import "HRCollectionViewBindingHelper.h"
+//#import <CocoaLumberjack/CocoaLumberjack.h>
+//#import "CommonUtils.h"
+
+#ifdef DEBUG
+
+#define ARLog(...) NSLog(__VA_ARGS__)
+
+#else
+
+#define ARLog(...)
+
+#endif
+
+
+#define ARFunc ARLog(@"%s",__func__);
+//NavBar高度
+#define NavigationBar_HEIGHT 44
+//获取屏幕 宽度、高度
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+#define IOS8    [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 ? YES : NO
+
+//获取和保存UUID相关
+#define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
+#define  KEY_USERNAME @"com.company.app.username"
+#define  KEY_PASSWORD @"com.company.app.password"
+
+#define  LOGIN_STATE @"login_state"
+
+#endif /* PrefixHeader_pch */
